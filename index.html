@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Dociara Confeitaria — bolos, doces e sobremesas artesanais feitos com carinho por Iara Meneses em São Miguel Paulista, São Paulo.">
+  <title>Dociara Confeitaria | Confeitaria artesanal & Encomendas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --pink: #E65C00;         
+      --pink-dark: #FF8533;    
+      --pink-pale: #F9F6F0;    
+      --brown: #4A2E1B;        
+      --cream: #FAF8F5;        
+      --gold: #D4A373;         
+      --muted: #6C584C;        
+      --white: #FFFFFF;
+    }
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--cream);color:var(--brown);font-family:'DM Sans',sans-serif;line-height:1.6}h1,h2,h3{font-family:'Playfair Display',serif;line-height:1.12}a{color:inherit;text-decoration:none}.container{width:min(1180px,94%);margin:auto}
+    
+    header{position:sticky;top:0;z-index:20;background:#ffffff;border-bottom:1px solid #f2e4e8}
+    .nav{min-height:95px;display:flex;align-items:center;justify-content:space-between;gap:15px;padding:8px 0}
+    
+    .brand-logo-container {
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+      transition: transform 0.2s ease;
+    }
+    .brand-logo-container:hover {
+      transform: scale(1.02);
+    }
+    .brand-logo-img {
+      height: 76px;
+      width: auto;
+      object-fit: contain;
+      display: block;
+    }
+    
+    .nav-container{display:flex;align-items:center;gap:30px;margin-left:auto}
+    .links{display:flex;align-items:center;gap:20px;font-size:.9rem;font-weight:600;white-space:nowrap}
+    .links a{transition:color .2s}
+    .links a:hover{color:var(--pink-dark)}
+    
+    .nav-actions{display:flex;align-items:center;gap:10px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px 18px;border-radius:999px;background:var(--pink);color:#fff;font-weight:700;font-size:.9rem;border:1px solid var(--pink);transition:.2s;cursor:pointer;white-space:nowrap}.btn:hover{background:var(--pink-dark);border-color:var(--pink-dark);transform:translateY(-2px)}.btn-outline{background:transparent;color:var(--pink-dark)}.btn-outline:hover{background:var(--pink-dark);color:#fff}.btn-wa{background:#239d61;border-color:#239d61}.btn-wa:hover{background:#187b4b;border-color:#187b4b}.btn-instagram{background:#fff;color:var(--pink-dark);border-color:var(--pink-dark);padding:10px 15px}.btn-instagram:hover{background:var(--pink-dark);color:#fff;border-color:var(--pink-dark)}
+    
+    .menu-btn{display:none;border:0;background:none;font-size:1.7rem;color:var(--brown);cursor:pointer}
+
+    .hero{padding:70px 0 76px;background:radial-gradient(circle at 10% 15%,#ffe5ed 0,transparent 32%),linear-gradient(120deg,#fff8fa,#fff)}.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:55px}.eyebrow{color:var(--pink-dark);text-transform:uppercase;letter-spacing:.18em;font-size:.75rem;font-weight:700}.hero h1{font-size:clamp(2.7rem,5vw,4.6rem);margin:16px 0 20px;max-width:650px}.hero h1 em{color:var(--pink-dark);font-style:normal}.hero p{font-size:1.1rem;color:var(--muted);max-width:550px}.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}.hero-photo{position:relative}.hero-photo img{width:100%;height:480px;object-fit:cover;border-radius:28px;box-shadow:0 22px 55px #70474a25}.photo-note{position:absolute;bottom:22px;left:-22px;background:white;padding:15px 20px;border-radius:16px;box-shadow:0 10px 30px #4b302e20;font-size:.9rem}.photo-note strong{display:block;color:var(--pink-dark);font-family:'Playfair Display';font-size:1.15rem}
+    
+    section{padding:82px 0}.section-head{text-align:center;max-width:680px;margin:0 auto 42px}.section-head h2{font-size:clamp(2rem,4vw,3rem);margin:10px 0 12px}.section-head p{color:var(--muted);margin:0}.products{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}.product{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 10px 30px #4b302e0c;border:1px solid #f4e8eb;display:flex;flex-direction:column}.product img{width:100%;height:250px;object-fit:cover;object-position:center}.product-body{padding:22px;display:flex;flex-direction:column;flex:1}.tag{font-size:.73rem;text-transform:uppercase;letter-spacing:.12em;color:var(--pink-dark);font-weight:700}.product h3{font-size:1.45rem;margin:9px 0}.product p{color:var(--muted);margin:0 0 20px;font-size:.94rem;flex:1}.product .btn{width:100%;padding:11px 16px;font-size:.9rem}
+    
+    .custom-cake-section{background:var(--white);border-radius:24px;padding:40px;box-shadow:0 10px 35px rgba(74, 46, 27, 0.08);border:2px solid #f4e8eb;margin-top:30px}.cake-grid{display:grid;grid-template-columns:1.2fr 0.8fr;gap:35px;align-items:start}.form-group{margin-bottom:20px}.form-group label{display:block;font-weight:700;margin-bottom:8px;color:var(--brown)}.form-group select,.form-group textarea,.form-group input{width:100%;padding:12px;border:1px solid #e2d2d5;border-radius:10px;font-family:inherit;font-size:.95rem;background:#fffaf8}.form-group select:focus,.form-group textarea:focus,.form-group input:focus{outline:2px solid var(--pink);border-color:transparent}.cake-summary{background:var(--pink-pale);padding:25px;border-radius:18px;border:1px solid #f1dcd6;position:sticky;top:110px}.cake-summary h3{margin-top:0;color:var(--brown)}.price-tag{font-size:2rem;font-weight:800;color:var(--pink);margin:15px 0}
+    
+    .gallery{background:var(--pink-pale)}.gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.gallery-grid figure{margin:0;overflow:hidden;border-radius:16px;background:white;box-shadow:0 8px 20px #4b302e12}.gallery-grid img{display:block;width:100%;height:220px;object-fit:cover;object-position:center;transition:transform .35s}.gallery-grid figure:hover img{transform:scale(1.05)}.gallery-grid figcaption{padding:12px 14px;font-weight:600;font-size:.88rem;color:var(--brown);text-align:center}
+
+    .about-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:55px;align-items:center}.about-photo{width:100%;height:420px;object-fit:cover;border-radius:26px}.about h2{font-size:clamp(2rem,4vw,3rem);margin:12px 0 18px}.about p{color:var(--muted)}.features{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:24px 0}.feature{background:#fff;border:1px solid #f1e5e8;border-radius:14px;padding:13px;font-weight:600;font-size:.9rem}.feature span{color:var(--pink-dark);margin-right:7px}
+    .contact{background:var(--brown);color:#fff;text-align:center}.contact h2{font-size:clamp(2rem,4vw,3rem);margin:10px 0}.contact p{color:#e7d8d5;max-width:620px;margin:0 auto 25px}.contact .eyebrow{color:#f0b5c8}.contact-actions{display:flex;justify-content:center;flex-wrap:wrap;gap:12px}.contact .btn-outline{color:#fff;border-color:#ffffff80}.contact .btn-outline:hover{background:#fff;color:var(--brown)}
+    footer{background:#382321;color:#d8c7c4;padding:30px 0}.footer-row{display:flex;justify-content:space-between;gap:20px;align-items:center;flex-wrap:wrap}.footer-brand{font:700 1.4rem 'Playfair Display';color:#fff}.footer-small{font-size:.85rem;color:#cbb8b5}.social{display:flex;gap:18px;color:#fff;font-weight:600}
+    .float-wa{position:fixed;right:22px;bottom:22px;z-index:30;background:#239d61;color:#fff;border-radius:50px;padding:14px 18px;box-shadow:0 8px 25px #0003;font-weight:700}
+
+    /* Radio buttons estilizados para o Tipo de Entrega */
+    .delivery-options { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 15px; }
+    .delivery-option { position: relative; }
+    .delivery-option input { position: absolute; opacity: 0; cursor: pointer; }
+    .delivery-box { display: block; padding: 12px; text-align: center; border: 2px solid #e2d2d5; border-radius: 10px; background: #fffaf8; font-weight: 600; cursor: pointer; transition: 0.2s; }
+    .delivery-option input:checked + .delivery-box { border-color: var(--pink); background: #fff0e6; color: var(--pink-dark); }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+    
+    @media(max-width:1100px){.nav-container{gap:15px}.links{gap:14px;font-size:.85rem}}
+    @media(max-width:960px){.nav{min-height:80px}.menu-btn{display:block}.nav-container{display:none;position:absolute;top:80px;left:0;right:0;background:#fff;padding:25px;flex-direction:column;align-items:stretch;box-shadow:0 15px 30px rgba(0,0,0,0.1);border-bottom:1px solid #f2e4e8}.nav-container.open{display:flex}.links{flex-direction:column;align-items:flex-start;gap:16px;width:100%}.nav-actions{flex-direction:column;width:100%}.nav-actions .btn{width:100%}}
+    @media(max-width:900px){.hero-grid,.about-grid,.cake-grid{grid-template-columns:1fr;gap:35px}.hero-photo{max-width:650px;margin:auto}.hero-photo img{height:400px}.photo-note{left:12px}.products{grid-template-columns:repeat(2,1fr)}.gallery-grid{grid-template-columns:repeat(2,1fr)}.form-row{grid-template-columns: 1fr;}}
+    @media(max-width:640px){.brand-logo-img{height:58px}.hero{padding:48px 0}.hero h1{font-size:2.65rem}.hero-photo img{height:330px}.photo-note{bottom:12px}.hero-actions .btn{width:100%}section{padding:60px 0}.products{grid-template-columns:1fr}.product img{height:260px}.gallery-grid{grid-template-columns:repeat(2,1fr);gap:10px}.gallery-grid img{height:155px}.gallery-grid figcaption{font-size:.78rem;padding:9px}.about-photo{height:320px}.features{grid-template-columns:1fr}.float-wa{right:12px;bottom:12px;padding:12px 15px;font-size:.88rem}}
+  </style>
+</head>
+<body>
+<header>
+  <div class="container nav">
+    <a class="brand-logo-container" href="#inicio" title="Dociara Confeitaria">
+      <img class="brand-logo-img" src="assets/logo-dociara-anuncio.jpg" alt="Dociara Confeitaria Logo">
+    </a>
+
+    <button class="menu-btn" aria-label="Abrir menu" onclick="document.querySelector('.nav-container').classList.toggle('open')">☰</button>
+    <div class="nav-container">
+      <nav class="links">
+        <a href="#inicio">Início</a>
+        <a href="#cardapio">Cardápio</a>
+        <a href="#personalizado">Bolo Personalizado</a>
+        <a href="#vitrine">Vitrine</a>
+        <a href="#sobre">Nossa História</a>
+        <a href="#contato">Contato</a>
+      </nav>
+      <div class="nav-actions">
+        <a class="btn btn-instagram" href="https://www.instagram.com/dociaragourmet/" target="_blank" rel="noopener noreferrer">◎ Instagram</a>
+        <a class="btn btn-wa" href="#personalizado">♡ Fazer Encomenda</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="hero" id="inicio">
+    <div class="container hero-grid">
+      <div>
+        <div class="eyebrow">Feito com carinho em São Miguel Paulista</div>
+        <h1>Momentos especiais merecem <em>doces inesquecíveis.</em></h1>
+        <p>Bolos artesanais, doces gourmet e delícias preparadas com cuidado pela confeiteira Iara Meneses para deixar sua comemoração ainda mais gostosa.</p>
+        <div class="hero-actions">
+          <a class="btn" href="#personalizado">Montar Bolo Personalizado ✨</a>
+          <a class="btn btn-outline" href="#cardapio">Ver cardápio</a>
+        </div>
+      </div>
+      <div class="hero-photo">
+        <img src="assets/WhatsApp Image 2026-11-03 at 16.53.50 (1).jpeg" alt="Bolo Dociara Confeitaria">
+        <div class="photo-note">
+          <strong>Carinho em cada detalhe</strong>
+          Doces para celebrar e presentear
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="cardapio">
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow">Nossas delícias</div>
+        <h2>Um cardápio feito para encantar</h2>
+        <p>Conheça nossas opções principais disponíveis para encomenda.</p>
+      </div>
+      <div class="products">
+        <article class="product">
+          <img src="assets/bolo de chocolate com morango.jpg" alt="Bolo de Chocolate com Morango">
+          <div class="product-body">
+            <span class="tag">Bolos Especiais</span>
+            <h3>Bolo de Chocolate</h3>
+            <p>Uma massa de chocolate fofinha e úmida, com recheio de brigadeiro gourmet e morangos frescos com ganache nobre.</p>
+            <a class="btn btn-wa" href="#personalizado">♡ Encomendar Este</a>
+          </div>
+        </article>
+        
+        <article class="product">
+          <img src="assets/SaveClip.App_731037407_18114095219506029_5518185873139918137_n.jpg" alt="Bolo Pé de Moça">
+          <div class="product-body">
+            <span class="tag">Vulcões</span>
+            <h3>Bolo Pé de Moça</h3>
+            <p>Um bolo fofinho e úmido, com cobertura cremosa de amendoim e caramelo que transborda sabor.</p>
+            <a class="btn btn-wa" href="#personalizado">♡ Encomendar Este</a>
+          </div>
+        </article>
+
+        <article class="product">
+          <img src="assets/882487924_18131984486506029_4703860351194459283_n.webp" alt="Doces para Festas">
+          <div class="product-body">
+            <span class="tag">Doces Finos</span>
+            <h3>Doces para Festas</h3>
+            <p>Seleção de doces artesanais finos perfeitos para festas e momentos doces inesquecíveis.</p>
+            <a class="btn btn-wa" href="#personalizado">♡ Encomendar Este</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- FORMULÁRIO DE ENCOMENDA COMPLETO E INTERATIVO -->
+  <section id="personalizado" style="background-color: var(--pink-pale);">
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow">Sistema de Encomenda Online</div>
+        <h2>Monte seu Pedido & Agende a Entrega</h2>
+        <p>Preencha os dados da encomenda. O pedido será registrado na nossa agenda e enviado para confirmação via WhatsApp!</p>
+      </div>
+
+      <div class="custom-cake-section">
+        <div class="cake-grid">
+          <form id="cake-form" onsubmit="event.preventDefault(); enviarPedidoBolo();">
+            <!-- DADOS DO CLIENTE -->
+            <div class="form-group">
+              <label for="client-name">Seu Nome Completo *</label>
+              <input type="text" id="client-name" required placeholder="Ex: Maria Silva">
+            </div>
+
+            <div class="form-group">
+              <label for="client-phone">Seu Telefone / WhatsApp *</label>
+              <input type="tel" id="client-phone" required placeholder="(11) 99999-9999">
+            </div>
+
+            <!-- OPÇÕES DE ENTREGA / RETIRADA -->
+            <div class="form-group">
+              <label>Forma de Recebimento *</label>
+              <div class="delivery-options">
+                <label class="delivery-option">
+                  <input type="radio" name="delivery-type" value="Retirada no Espaço" checked onclick="toggleDeliveryAddress(false)">
+                  <span class="delivery-box">🛍️ Retirar na Loja</span>
+                </label>
+                <label class="delivery-option">
+                  <input type="radio" name="delivery-type" value="Entrega em Domicílio" onclick="toggleDeliveryAddress(true)">
+                  <span class="delivery-box">🚚 Entrega em Domicílio</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- CAMPO DE ENDEREÇO (EXIBIDO APENAS SE FOR ENTREGA) -->
+            <div class="form-group" id="address-container" style="display:none;">
+              <label for="client-address">Endereço Completo de Entrega *</label>
+              <input type="text" id="client-address" placeholder="Rua, número, bairro e ponto de referência">
+            </div>
+
+            <!-- AGENDAMENTO DE DATA E HORA -->
+            <div class="form-row">
+              <div class="form-group">
+                <label for="order-date">Data da Retirada/Entrega *</label>
+                <input type="date" id="order-date" required>
+              </div>
+              <div class="form-group">
+                <label for="order-time">Horário Desejado *</label>
+                <input type="time" id="order-time" required>
+              </div>
+            </div>
+
+            <hr style="border: 0; border-top: 1px solid #e2d2d5; margin: 25px 0;">
+
+            <!-- MONTAGEM DO BOLO -->
+            <div class="form-group">
+              <label for="cake-size">1. Escolha o Tamanho / Peso:</label>
+              <select id="cake-size" onchange="calcularPreco()">
+                <option value="80" data-size="1kg (serve ~10 fatias)">1 kg (serve ~10 fatias) - R$ 80,00</option>
+                <option value="150" data-size="2kg (serve ~20 fatias)">2 kg (serve ~20 fatias) - R$ 150,00</option>
+                <option value="210" data-size="3kg (serve ~30 fatias)">3 kg (serve ~30 fatias) - R$ 210,00</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="cake-dough">2. Escolha a Massa:</label>
+              <select id="cake-dough" onchange="calcularPreco()">
+                <option value="Pão de Ló Baunilha">Pão de Ló de Baunilha</option>
+                <option value="Chocolate Cacau 50%">Chocolate Cacau 50%</option>
+                <option value="Red Velvet">Red Velvet (+ R$ 10)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="cake-filling">3. Escolha o Recheio Principal:</label>
+              <select id="cake-filling" onchange="calcularPreco()">
+                <option value="Brigadeiro Gourmet">Brigadeiro Gourmet ao Leite</option>
+                <option value="Ninho com Morango">Ninho com Morangos Frescos (+ R$ 15)</option>
+                <option value="Doce de Leite com Nozes">Doce de Leite com Nozes (+ R$ 15)</option>
+                <option value="Nutella com Ninho">Ninho com Nutella (+ R$ 20)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="cake-topping">4. Cobertura / Decoração:</label>
+              <select id="cake-topping" onchange="calcularPreco()">
+                <option value="Chantininho Cremoso">Chantininho Cremoso Liso</option>
+                <option value="Ganache de Chocolate">Ganache de Chocolate Nobre (+ R$ 10)</option>
+                <option value="Vulcão de Brigadeiro">Vulcão de Brigadeiro</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="cake-obs">5. Detalhes, Topper ou Observações:</label>
+              <textarea id="cake-obs" rows="3" placeholder="Ex: Escrever 'Parabéns Iara' no topo / Tema floral..."></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-wa" style="width:100%; font-size:1.1rem; padding:15px;">🎂 Confirmar e Finalizar Encomenda</button>
+          </form>
+
+          <!-- RESUMO FIXO DO PEDIDO -->
+          <div class="cake-summary">
+            <h3>Resumo da Encomenda</h3>
+            <p><strong>Recebimento:</strong> <span id="summary-delivery">Retirada no Espaço</span></p>
+            <p><strong>Data & Hora:</strong> <span id="summary-datetime">Não informada</span></p>
+            <p><strong>Tamanho:</strong> <span id="summary-size">1 kg (serve ~10 fatias)</span></p>
+            <p><strong>Massa:</strong> <span id="summary-dough">Pão de Ló de Baunilha</span></p>
+            <p><strong>Recheio:</strong> <span id="summary-filling">Brigadeiro Gourmet ao Leite</span></p>
+            <p><strong>Cobertura:</strong> <span id="summary-topping">Chantininho Cremoso Liso</span></p>
+            
+            <div class="price-tag">Total: R$ <span id="total-price">80.00</span></div>
+            <p style="font-size:0.85rem; color:var(--muted);">* Seu pedido ficará registrado no sistema da loja e será redirecionado para o WhatsApp.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="gallery" id="vitrine">
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow">Feitos à mão</div>
+        <h2>Nossa Vitrine de Inspirações</h2>
+        <p>Um mural exclusivo com fotos dos nossos bolos festivos e caixas de presentes.</p>
+      </div>
+      <div class="gallery-grid">
+        <figure>
+          <img src="assets/802778496_18124086866506029_1178296858876682674_n.webp" alt="Bolos Diversos">
+          <figcaption>Bolos Diversos</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/SaveClip.App_731068143_18114095192506029_1455276560626649808_n.jpg" alt="Bolo em Camadas">
+          <figcaption>Bolos em Camadas</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/SaveClip.App_731175340_18114095183506029_2548862498455594220_n.jpg" alt="Bolo Decorado para Festas">
+          <figcaption>Bolos Decorados para Festas</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/SaveClip.App_730722518_18113072378506029_3487896430626617374_n.jpg" alt="Caixa Presenteável">
+          <figcaption>Caixas de Presente Gourmet</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="about" id="sobre">
+    <div class="container about-grid">
+      <img class="about-photo" src="assets/WhatsApp Image 2026-11-03 at 16.53.50.jpeg" alt="Espaço Físico Dociara Confeitaria">
+      <div>
+        <div class="eyebrow">Nossa história</div>
+        <h2>Do nosso carinho para a sua mesa.</h2>
+        <p>Uma história que começou dentro de casa, entre receitas, sonhos e muito amor pela confeitaria. A Dociara Confeitaria nasceu da paixão por transformar ingredientes selecionados em momentos doces e inesquecíveis.</p>
+        <p>Hoje, a Dociara ganha seu espaço físico em São Miguel Paulista e continua com a mesma essência: <strong>transformar ingredientes em momentos especiais</strong> para você e sua família.</p>
+        <div class="features">
+          <div class="feature"><span>✦</span> Produção artesanal</div>
+          <div class="feature"><span>✦</span> Encomendas personalizadas</div>
+          <div class="feature"><span>✦</span> Doces e bolos para festas</div>
+          <div class="feature"><span>✦</span> Atendimento próximo</div>
+        </div>
+        <a class="btn" href="https://instagram.com/dociaragourmet" target="_blank" rel="noopener">Acompanhe no Instagram ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contato">
+    <div class="container">
+      <div class="eyebrow">Vamos preparar algo especial?</div>
+      <h2>Seu próximo momento delicioso começa aqui.</h2>
+      <p>Fale com a Dociara Confeitaria para consultar sabores, datas disponíveis e orçamentos para eventos.</p>
+      <div class="contact-actions">
+        <a class="btn btn-wa" href="#personalizado">☏ Fazer Encomenda Online</a>
+        <a class="btn btn-outline" href="https://instagram.com/dociaragourmet" target="_blank" rel="noopener">◎ Instagram @dociaragourmet</a>
+      </div>
+      <p style="font-size:.88rem;margin-top:25px">São Miguel Paulista · Zona Leste · São Paulo - SP</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container footer-row">
+    <div>
+      <div class="footer-brand">Dociara Confeitaria</div>
+      <div class="footer-small">Confeitaria artesanal por Iara Meneses</div>
+    </div>
+    <div class="social">
+      <a href="https://instagram.com/dociaragourmet" target="_blank" rel="noopener">Instagram</a>
+      <a href="#contato">Contato</a>
+    </div>
+    <div class="footer-small">© 2026 Dociara Confeitaria. Todos os direitos reservados.</div>
+  </div>
+</footer>
+
+<a class="float-wa" href="#personalizado">♡ Monte seu bolo</a>
+
+<script>
+const WHATSAPP_NUMBER = '5511973271421';
+
+// Bloquear datas passadas no calendário de agendamento
+document.getElementById('order-date').min = new Date().toISOString().split('T')[0];
+
+function toggleDeliveryAddress(isDelivery) {
+  const container = document.getElementById('address-container');
+  const input = document.getElementById('client-address');
+  if (isDelivery) {
+    container.style.display = 'block';
+    input.required = true;
+    document.getElementById('summary-delivery').innerText = 'Entrega em Domicílio';
+  } else {
+    container.style.display = 'none';
+    input.required = false;
+    document.getElementById('summary-delivery').innerText = 'Retirada no Espaço';
+  }
+}
+
+function calcularPreco() {
+  const sizeSelect = document.getElementById('cake-size');
+  const doughSelect = document.getElementById('cake-dough');
+  const fillingSelect = document.getElementById('cake-filling');
+  const toppingSelect = document.getElementById('cake-topping');
+  const dateInput = document.getElementById('order-date').value;
+  const timeInput = document.getElementById('order-time').value;
+
+  let basePrice = parseFloat(sizeSelect.value);
+
+  if (doughSelect.value === 'Red Velvet') basePrice += 10;
+  if (fillingSelect.value === 'Ninho com Morango' || fillingSelect.value === 'Doce de Leite com Nozes') basePrice += 15;
+  if (fillingSelect.value === 'Nutella com Ninho') basePrice += 20;
+  if (toppingSelect.value === 'Ganache de Chocolate') basePrice += 10;
+
+  document.getElementById('summary-size').innerText = sizeSelect.options[sizeSelect.selectedIndex].getAttribute('data-size');
+  document.getElementById('summary-dough').innerText = doughSelect.value;
+  document.getElementById('summary-filling').innerText = fillingSelect.value;
+  document.getElementById('summary-topping').innerText = toppingSelect.value;
+  document.getElementById('total-price').innerText = basePrice.toFixed(2);
+
+  if(dateInput && timeInput) {
+    const formattedDate = dateInput.split('-').reverse().join('/');
+    document.getElementById('summary-datetime').innerText = `${formattedDate} às ${timeInput}`;
+  }
+}
+
+// Eventos para atualização dinâmica dos campos de data e hora no resumo
+document.getElementById('order-date').addEventListener('change', calcularPreco);
+document.getElementById('order-time').addEventListener('change', calcularPreco);
+
+function enviarPedidoBolo() {
+  const name = document.getElementById('client-name').value;
+  const phone = document.getElementById('client-phone').value;
+  const deliveryType = document.querySelector('input[name="delivery-type"]:checked').value;
+  const address = deliveryType === 'Entrega em Domicílio' ? document.getElementById('client-address').value : 'N/A (Retirada no local)';
+  const date = document.getElementById('order-date').value.split('-').reverse().join('/');
+  const time = document.getElementById('order-time').value;
+  
+  const size = document.getElementById('summary-size').innerText;
+  const dough = document.getElementById('summary-dough').innerText;
+  const filling = document.getElementById('summary-filling').innerText;
+  const topping = document.getElementById('summary-topping').innerText;
+  const obs = document.getElementById('cake-obs').value || 'Nenhuma';
+  const price = document.getElementById('total-price').innerText;
+
+  // 1. SALVAR O PEDIDO NO SUPABASE VIA NETLIFY SERVERLESS FUNCTION
+    const novoPedido = {
+        cliente: name,
+        telefone: phone,
+        tipo: deliveryType,
+        data_agendada: `${date} às ${time}`,
+        detalhes: `Tamanho: ${size} | Massa: ${dough} | Recheio: ${filling} | Cobertura: ${topping} | Obs: ${obs} | Total: R$ ${price}`
+    };
+
+    try {
+        const resposta = await fetch('/.netlify/functions/criar-pedido', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(novoPedido)
+        });
+
+        if (resposta.ok) {
+            console.log('Pedido gravado com sucesso no Supabase!');
+        } else {
+            console.error('Erro ao gravar no Supabase');
+        }
+    } catch (erro) {
+        console.error('Erro de rede ao salvar:', erro);
+    }
+
+    // 2. MONTAR MENSAGEM PARA O WHATSAPP
+    const mensagem = `*NOVA ENCOMENDA AGENDADA - DOCIARA CONFEITARIA*\n\n` +
+        `*Cliente:* ${name}\n` +
+        `*Telefone:* ${phone}\n` +
+        `*Tipo:* ${deliveryType}\n` +
+        (deliveryType === 'Entrega em Domicílio' ? `*Endereço:* ${address}\n` : '') +
+        `*Data Agendada:* ${date} às ${time}\n\n` +
+        `*DETALHES DO BOLO:*\n` +
+        `*Tamanho:* ${size}\n` +
+        `*Massa:* ${dough}\n` +
+        `*Recheio:* ${filling}\n` +
+        `*Cobertura:* ${topping}\n` +
+        `*Obs:* ${obs}\n\n` +
+        `*Valor Estimado:* R$ ${price}\n` +
+        `Aguardando confirmação do pedido!`;
+
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(mensagem)}`, '_blank');
+}
+</script>
+</body>
+</html>

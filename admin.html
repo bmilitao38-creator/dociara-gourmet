@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel da Agenda | Dociara Confeitaria</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --brown: #4A2E1B;
+      --pink: #E65C00;
+      --pink-pale: #F9F6F0;
+      --cream: #FAF8F5;
+      --green: #239d61;
+    }
+    body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--brown); margin: 0; padding: 20px; }
+    .header-admin { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #e2d2d5; padding-bottom: 15px; margin-bottom: 20px; }
+    h1 { margin: 0; }
+    .stats { display: flex; gap: 15px; margin-bottom: 20px; }
+    .card-stat { background: #fff; padding: 15px 20px; border-radius: 12px; border: 1px solid #e2d2d5; flex: 1; text-align: center; }
+    .card-stat strong { font-size: 1.8rem; color: var(--pink); display: block; }
+    
+    .table-container { background: #fff; border-radius: 16px; border: 1px solid #e2d2d5; overflow-x: auto; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+    table { width: 100%; border-collapse: collapse; text-align: left; }
+    th, td { padding: 15px; border-bottom: 1px solid #f2e4e8; font-size: 0.92rem; }
+    th { background: var(--pink-pale); font-weight: 700; color: var(--brown); }
+    
+    .status-badge { padding: 6px 12px; border-radius: 20px; font-weight: 700; font-size: 0.8rem; display: inline-block; }
+    .status-Pendente { background: #fff3cd; color: #856404; }
+    .status-Producao { background: #cce5ff; color: #004085; }
+    .status-Concluido { background: #d4edda; color: #155724; }
+    
+    .btn-action { padding: 6px 12px; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.8rem; margin-right: 5px; }
+    .btn-status { background: var(--brown); color: #fff; }
+    .btn-pay { background: var(--green); color: #fff; }
+    .btn-delete { background: #dc3545; color: #fff; }
+  </style>
+</head>
+<body>
+
+  <div class="header-admin">
+    <h1>🗓️ Agenda de Encomendas & Produção</h1>
+    <a href="index.html" style="text-decoration:none; color:var(--pink); font-weight:700;">← Voltar ao Site</a>
+  </div>
+
+  <div class="stats">
+    <div class="card-stat">
+      <span id="total-pedidos">0</span>
+      Total de Encomendas
+    </div>
+    <div class="card-stat">
+      <span id="faturamento-total">R$ 0,00</span>
+      Faturamento Previsto
+    </div>
+  </div>
+
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Data / Hora</th>
+          <th>Cliente / Telefone</th>
+          <th>Tipo / Endereço</th>
+          <th>Detalhes do Bolo</th>
+          <th>Valor</th>
+          <th>Status</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody id="tabela-pedidos">
+        <!-- Linhas geradas via JavaScript -->
+      </tbody>
+    </table>
+  </div>
+
+<script>
+function carregarPedidos() {
+  const pedidos = JSON.parse(localStorage.getItem('dociara_pedidos')) || [];
+  const tabela = document.getElementById('tabela-pedidos');
+  tabela.innerHTML = '';
+
+  let totalValor = 0;
+
+  if (pedidos.length === 0) {
+    tabela.innerHTML = `<tr><td colspan="7" style="text-align:center; padding:30px;">Nenhuma encomenda agendada no momento.</td></tr>`;
+    document.getElementById('total-pedidos').innerText = 0;
+    document.getElementById('faturamento-total').innerText = 'R$ 0,00';
+    return;
+  }
+
+  pedidos.reverse().forEach((p, index) => {
+    totalValor += parseFloat(p.valorTotal);
+
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td><strong>${p.data}</strong><br><small>${p.hora}</small></td>
+      <td><strong>${p.cliente}</strong><br><small>${p.telefone}</small></td>
+      <td><strong>${p.tipoRecebimento}</strong><br><small>${p.endereco}</small></td>
+      <td>
+        <strong>${p.tamanho}</strong> | ${p.massa}<br>
+        <small><strong>Recheio:</strong> ${p.recheio} | <strong>Cobertura:</strong> ${p.cobertura}</small><br>
+        <small><em>Obs: ${p.observacoes}</em></small>
+      </td>
+      <td><strong>R$ ${p.valorTotal}</strong></td>
+      <td><span class="status-badge status-${p.status.replace(' ', '')}">${p.status}</span></td>
+      <td>
+        <button class="btn-action btn-status" onclick="alterarStatus(${p.id})">Avançar Status</button>
+        <button class="btn-action btn-pay" onclick="gerarPixSimulado(${p.valorTotal}, '${p.cliente}')">Link Pix</button>
+        <button class="btn-action btn-delete" onclick="removerPedido(${p.id})">🗑️</button>
+      </td>
+    `;
+    tabela.appendChild(tr);
+  });
+
+  document.getElementById('total-pedidos').innerText = pedidos.length;
+  document.getElementById('faturamento-total').innerText = `R$ ${totalValor.toFixed(2)}`;
+}
+
+function alterarStatus(id) {
+  let pedidos = JSON.parse(localStorage.getItem('dociara_pedidos')) || [];
+  pedidos = pedidos.map(p => {
+    if (p.id === id) {
+      if (p.status === 'Pendente') p.status = 'Producao';
+      else if (p.status === 'Producao') p.status = 'Concluido';
+      else p.status = 'Pendente';
+    }
+    return p;
+  });
+  localStorage.setItem('dociara_pedidos', JSON.stringify(pedidos));
+  carregarPedidos();
+}
+
+function removerPedido(id) {
+  if(confirm("Deseja realmente remover esta encomenda?")) {
+    let pedidos = JSON.parse(localStorage.getItem('dociara_pedidos')) || [];
+    pedidos = pedidos.filter(p => p.id !== id);
+    localStorage.setItem('dociara_pedidos', JSON.stringify(pedidos));
+    carregarPedidos();
+  }
+}
+
+function gerarPixSimulado(valor, cliente) {
+  alert(`=== LINK DE PAGAMENTO PIX GERADO ===\n\nCliente: ${cliente}\nValor: R$ ${valor}\n\nChave Pix Copia e Cola gerada com sucesso! O link pode ser enviado no WhatsApp do cliente.`);
+}
+
+carregarPedidos();
+</script>
+</body>
+</html>

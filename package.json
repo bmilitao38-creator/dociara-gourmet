@@ -1,0 +1,8 @@
+{
+  "name": "dociara-gourmet",
+  "version": "1.0.0",
+  "description": "Site Dociara Gourmet com funcoes Netlify",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.0.0"
+  }
+}
